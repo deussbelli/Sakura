@@ -1,0 +1,19 @@
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Release\Mathematical cryptology.exe.config
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Release\Mathematical cryptology.exe
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Release\Mathematical cryptology.pdb
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Release\WpfAnimatedGif.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Release\WpfAnimatedGif.pdb
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Release\WpfAnimatedGif.xml
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Release\Mathematical cryptology.csproj.AssemblyReference.cache
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Release\MainWindow.g.cs
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Release\App.g.cs
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Release\Mathematical cryptology_MarkupCompile.cache
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Release\Mathematical cryptology_MarkupCompile.lref
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Release\MainWindow.baml
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Release\Mathematical cryptology.g.resources
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Release\Mathematical_cryptology.Properties.Resources.resources
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Release\Mathematical cryptology.csproj.GenerateResource.cache
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Release\Mathematical cryptology.csproj.CoreCompileInputs.cache
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Release\Mathemat.0D77ECFA.Up2Date
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Release\Mathematical cryptology.exe
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Release\Mathematical cryptology.pdb

@@ -1,0 +1,78 @@
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\xunit.abstractions.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\xunit.runner.visualstudio.testadapter.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\xunit.runner.reporters.net452.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\xunit.runner.utility.net452.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\Mathematical cryptology.exe.config
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\Mathematical cryptology.exe
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\Mathematical cryptology.pdb
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\MathNet.Numerics.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\Microsoft.TestPlatform.CoreUtilities.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\Microsoft.TestPlatform.PlatformAbstractions.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\Microsoft.VisualStudio.TestPlatform.ObjectModel.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\MP3Sharp.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\NuGet.Frameworks.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\System.Collections.Immutable.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\System.Reflection.Metadata.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\WpfAnimatedGif.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\xunit.assert.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\xunit.core.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\xunit.execution.desktop.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\MathNet.Numerics.xml
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\MP3Sharp.pdb
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\System.Collections.Immutable.xml
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\System.Reflection.Metadata.xml
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\WpfAnimatedGif.pdb
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\WpfAnimatedGif.xml
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\xunit.assert.xml
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\xunit.core.xml
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\xunit.execution.desktop.xml
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\cs\Microsoft.TestPlatform.CoreUtilities.resources.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\de\Microsoft.TestPlatform.CoreUtilities.resources.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\es\Microsoft.TestPlatform.CoreUtilities.resources.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\fr\Microsoft.TestPlatform.CoreUtilities.resources.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\it\Microsoft.TestPlatform.CoreUtilities.resources.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\ja\Microsoft.TestPlatform.CoreUtilities.resources.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\ko\Microsoft.TestPlatform.CoreUtilities.resources.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\pl\Microsoft.TestPlatform.CoreUtilities.resources.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\pt-BR\Microsoft.TestPlatform.CoreUtilities.resources.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\ru\Microsoft.TestPlatform.CoreUtilities.resources.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\tr\Microsoft.TestPlatform.CoreUtilities.resources.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\zh-Hans\Microsoft.TestPlatform.CoreUtilities.resources.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\zh-Hant\Microsoft.TestPlatform.CoreUtilities.resources.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\cs\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\de\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\es\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\fr\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\it\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\ja\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\ko\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\pl\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\pt-BR\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\ru\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\tr\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\zh-Hans\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\bin\Debug\zh-Hant\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Debug\Mathematical cryptology.csproj.AssemblyReference.cache
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Debug\AffineCipher.g.cs
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Debug\CaesarCipher.g.cs
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Debug\CardanoGrilleCipher.g.cs
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Debug\MainWindow.g.cs
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Debug\RailFenceCipher.g.cs
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Debug\VigenereCipher.g.cs
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Debug\App.g.cs
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Debug\Mathematical cryptology_Content.g.cs
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Debug\Mathematical cryptology_MarkupCompile.cache
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Debug\Mathematical cryptology_MarkupCompile.lref
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Debug\AffineCipher.baml
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Debug\CaesarCipher.baml
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Debug\CardanoGrilleCipher.baml
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Debug\MainWindow.baml
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Debug\RailFenceCipher.baml
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Debug\VigenereCipher.baml
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Debug\Mathematical cryptology.g.resources
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Debug\Mathematical_cryptology.Properties.Resources.resources
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Debug\Mathematical cryptology.csproj.GenerateResource.cache
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Debug\Mathematical cryptology.csproj.CoreCompileInputs.cache
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Debug\Mathemat.0D77ECFA.Up2Date
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Debug\Mathematical cryptology.exe
+E:\C#\Mathematical cryptology\Mathematical cryptology\obj\Debug\Mathematical cryptology.pdb

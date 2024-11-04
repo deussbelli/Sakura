@@ -1,0 +1,624 @@
+0.138
+0.064
+0.013
+0.046
+0.013
+0.027
+0.042
+0.005
+0.007
+0.020
+0.055
+0.044
+0.010
+0.009
+0.033
+0.027
+0.029
+0.068
+0.086
+0.025
+0.043
+0.037
+0.045
+0.027
+0.003
+0.011
+0.010
+0.011
+0.005
+0.004
+0.016
+0.008
+0.019
+
+
+
+ private static readonly Dictionary<char, double> ukrainianSymbolFrequency = new Dictionary<char, double>
+ {
+     {'А', 0.0801}, {'Б', 0.0161}, {'В', 0.0506}, {'Г', 0.0248}, {'Ґ', 0.0011},
+     {'Д', 0.0487}, {'Е', 0.1108}, {'Є', 0.0087}, {'Ж', 0.0175}, {'З', 0.0371},
+     {'И', 0.0626}, {'І', 0.0535}, {'Ї', 0.0089}, {'Й', 0.0905}, {'К', 0.0285},
+     {'Л', 0.035}, {'М', 0.0307}, {'Н', 0.067}, {'О', 0.1097}, {'П', 0.0301},
+     {'Р', 0.0473}, {'С', 0.0613}, {'Т', 0.067}, {'У', 0.031}, {'Ф', 0.0016},
+     {'Х', 0.0094}, {'Ц', 0.0304}, {'Ч', 0.0248}, {'Ш', 0.0176}, {'Щ', 0.0076},
+     {'Ь', 0.0099}, {'Ю', 0.0089}, {'Я', 0.0306},
+     {'а', 0.0801}, {'б', 0.0161}, {'в', 0.0506}, {'г', 0.0248}, {'ґ', 0.0011},
+     {'д', 0.0487}, {'е', 0.1108}, {'є', 0.0087}, {'ж', 0.0175}, {'з', 0.0371},
+     {'и', 0.0626}, {'і', 0.0535}, {'ї', 0.0089}, {'й', 0.0905}, {'к', 0.0285},
+     {'л', 0.035}, {'м', 0.0307}, {'н', 0.067}, {'о', 0.1097}, {'п', 0.0301},
+     {'р', 0.0473}, {'с', 0.0613}, {'т', 0.067}, {'у', 0.031}, {'ф', 0.0016},
+     {'х', 0.0094}, {'ц', 0.0304}, {'ч', 0.0248}, {'ш', 0.0176}, {'щ', 0.0076},
+     {'ь', 0.0099}, {'ю', 0.0089}, {'я', 0.0306},
+     {'0', 0.0413}, {'1', 0.0176}, {'2', 0.0285}, {'3', 0.029}, {'4', 0.0456},
+     {'5', 0.0175}, {'6', 0.0307}, {'7', 0.0313}, {'8', 0.0335}, {'9', 0.0296},
+     {' ', 0.19181}, {'.', 0.01281}, {',', 0.01281}, {';', 0.01281}, {':', 0.01281},
+     {'\'', 0.01281}, {'\"', 0.01281}, {'!', 0.01281}, {'?', 0.01281}, {'(', 0.01281},
+     {')', 0.01281}, {'[', 0.01281}, {']', 0.01281}, {'{', 0.01281}, {'}', 0.01281}
+ };
+
+ private Dictionary<char, double> AnalyzeFrequency_UK(string text)
+ {
+     var frequencyMap_UK = new Dictionary<char, double>();
+     int totalSymbols = 0;
+
+     foreach (char c in text)
+     {
+         if (ukrainianSymbolFrequency.ContainsKey(c))
+         {
+             if (frequencyMap_UK.ContainsKey(c))
+                 frequencyMap_UK[c]++;
+             else
+                 frequencyMap_UK[c] = 1;
+
+             totalSymbols++;
+         }
+     }
+
+     foreach (var key in frequencyMap_UK.Keys.ToList())
+     {
+         frequencyMap_UK[key] /= totalSymbols;
+     }
+
+     return frequencyMap_UK;
+ }
+ private int PerformFrequencyAnalysis_UK(string ciphertext)
+ {
+     var frequencyMap_UK = AnalyzeFrequency_UK(ciphertext);
+
+     double minDistance = double.MaxValue;
+     int bestShift = 0;
+
+     foreach (var letterFrequency in ukrainianSymbolFrequency)
+     {
+         double distance = 0;
+
+         foreach (var entry in frequencyMap_UK)
+         {
+             char encryptedChar;
+             if (char.IsUpper(entry.Key))
+                 encryptedChar = (char)(((entry.Key - 'А' + letterFrequency.Key - 'А') % 33) + 'А');
+             else if (char.IsLower(entry.Key))
+                 encryptedChar = (char)(((entry.Key - 'а' + letterFrequency.Key - 'а') % 33) + 'а');
+             else
+                 encryptedChar = entry.Key;
+
+             if (ukrainianSymbolFrequency.ContainsKey(encryptedChar))
+                 distance += Math.Abs(entry.Value - ukrainianSymbolFrequency[encryptedChar]);
+             else
+                 distance += entry.Value; // Якщо символу немає у алфавіті, відстань лишається незмінною
+         }
+
+         if (distance < minDistance)
+         {
+             minDistance = distance;
+             bestShift = (letterFrequency.Key - 'А' + 33) % 33;
+         }
+     }
+
+     return bestShift;
+ }
+
+
+ private static readonly Dictionary<char, double> englishSymbolFrequency = new Dictionary<char, double>
+ {
+     {'A', 0.08167}, {'B', 0.01492}, {'C', 0.02782}, {'D', 0.04253}, {'E', 0.12702},
+     {'F', 0.02228}, {'G', 0.02015}, {'H', 0.06094}, {'I', 0.06966}, {'J', 0.00153},
+     {'K', 0.00772}, {'L', 0.04025}, {'M', 0.02406}, {'N', 0.06749}, {'O', 0.07507},
+     {'P', 0.01929}, {'Q', 0.00095}, {'R', 0.05987}, {'S', 0.06327}, {'T', 0.09056},
+     {'U', 0.02758}, {'V', 0.00978}, {'W', 0.02360}, {'X', 0.00150}, {'Y', 0.01974},
+     {'Z', 0.00074},
+     {'a', 0.08167}, {'b', 0.01492}, {'c', 0.02782}, {'d', 0.04253}, {'e', 0.12702},
+     {'f', 0.02228}, {'g', 0.02015}, {'h', 0.06094}, {'i', 0.06966}, {'j', 0.00153},
+     {'k', 0.00772}, {'l', 0.04025}, {'m', 0.02406}, {'n', 0.06749}, {'o', 0.07507},
+     {'p', 0.01929}, {'q', 0.00095}, {'r', 0.05987}, {'s', 0.06327}, {'t', 0.09056},
+     {'u', 0.02758}, {'v', 0.00978}, {'w', 0.02360}, {'x', 0.00150}, {'y', 0.01974},
+     {'z', 0.00074},
+     {' ', 0.19181},
+     {'.', 0.01281}, {',', 0.01281}, {';', 0.01281}, {':', 0.01281}, {'\'', 0.01281},
+     {'\"', 0.01281}, {'!', 0.01281}, {'?', 0.01281}, {'(', 0.01281}, {')', 0.01281},
+     {'[', 0.01281}, {']', 0.01281}, {'{', 0.01281}, {'}', 0.01281}
+ };
+
+    
+ private Dictionary<char, double> AnalyzeFrequency(string text)
+ {
+     var frequencyMap = new Dictionary<char, double>();
+     int totalSymbols = 0;
+
+     foreach (char c in text)
+     {
+         if (englishSymbolFrequency.ContainsKey(c))
+         {
+             if (frequencyMap.ContainsKey(c))
+                 frequencyMap[c]++;
+             else
+                 frequencyMap[c] = 1;
+
+             totalSymbols++;
+         }
+     }
+
+     foreach (var key in frequencyMap.Keys.ToList())
+     {
+         frequencyMap[key] /= totalSymbols;
+     }
+
+     return frequencyMap;
+ }
+ private int PerformFrequencyAnalysis(string ciphertext)
+ {
+     var frequencyMap = AnalyzeFrequency(ciphertext);
+
+     double minDistance = double.MaxValue;
+     int bestShift = 0;
+
+     foreach (var letterFrequency in englishSymbolFrequency)
+     {
+         double distance = 0;
+
+         foreach (var entry in frequencyMap)
+         {
+             char encryptedChar;
+             if (char.IsUpper(entry.Key))
+                 encryptedChar = (char)(((entry.Key - 'A' + letterFrequency.Key - 'A') % 26) + 'A');
+             else if (char.IsLower(entry.Key))
+                 encryptedChar = (char)(((entry.Key - 'a' + letterFrequency.Key - 'a') % 26) + 'a');
+             else
+                 encryptedChar = entry.Key;
+
+             if (englishSymbolFrequency.ContainsKey(encryptedChar))
+                 distance += Math.Abs(entry.Value - englishSymbolFrequency[encryptedChar]);
+             else
+                 distance += entry.Value; // немає в алфавіті - без змін від
+         }
+
+         if (distance < minDistance)
+         {
+             minDistance = distance;
+             bestShift = (letterFrequency.Key - 'A' + 26) % 26;
+         }
+     }
+
+     return bestShift;
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  private readonly string englishAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 ,.!?;:'\"()[]{}";
+  private readonly string ukrainianAlphabet = "АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯабвгґдеєжзиіїйклмнопрстуфхцчшщьюя0123456789 ,.!?;:'\"()[]{}";
+
+  private string TransformText(string text, int shift, string alphabet)
+  {
+      shift %= alphabet.Length; // Ensure shift is within alphabet length
+
+      Dictionary<char, char> transformationMap = new Dictionary<char, char>();
+
+      for (int i = 0; i < alphabet.Length; i++)
+      {
+          int shiftedIndex = (i + shift + alphabet.Length) % alphabet.Length;
+          transformationMap[alphabet[i]] = alphabet[shiftedIndex];
+      }
+
+      // Transforming the input text using the transformation map
+      StringBuilder transformedText = new StringBuilder();
+
+      foreach (char c in text)
+      {
+          if (transformationMap.ContainsKey(c))
+              transformedText.Append(transformationMap[c]);
+          else
+              transformedText.Append(c); // Keep non-alphabetic characters unchanged
+      }
+
+      return transformedText.ToString();
+  }
+
+
+  public string EncryptBlock(string block, int shift, string selectedAlphabet)
+  {
+      string alphabet;
+      if (selectedAlphabet.Equals("english", StringComparison.OrdinalIgnoreCase))
+          alphabet = englishAlphabet;
+      else if (selectedAlphabet.Equals("ukrainian", StringComparison.OrdinalIgnoreCase))
+          alphabet = ukrainianAlphabet;
+      else
+          throw new ArgumentException("Invalid alphabet specified.");
+
+      return TransformText(block, shift, alphabet);
+  }
+
+  public string DecryptBlock(string block, int shift, string selectedAlphabet)
+  {
+      string alphabet;
+      if (selectedAlphabet.Equals("english", StringComparison.OrdinalIgnoreCase))
+          alphabet = englishAlphabet;
+      else if (selectedAlphabet.Equals("ukrainian", StringComparison.OrdinalIgnoreCase))
+          alphabet = ukrainianAlphabet;
+      else
+          throw new ArgumentException("Invalid alphabet specified.");
+
+      return TransformText(block, -shift, alphabet);
+  }
+
+
+  private DateTime startTime;
+  private DateTime endTime;
+
+  private void btnStart_Click(object sender, RoutedEventArgs e)
+  {
+      int shift = int.Parse(txtShift.Text);
+      string selectedAlphabet = chkEnglishAlphabet.IsChecked == true ? "English" : "Ukrainian";
+      int blockSize = int.Parse(txtNumberOfBlocks.Text);
+
+      if (chkReadFromConsole.IsChecked == true)
+      {
+          string inputText = txtInput.Text;
+
+          startTime = DateTime.Now; // Засекаем время до начала операции
+
+          string result = ProcessBlocks(inputText, shift, selectedAlphabet, blockSize, chkEncrypt.IsChecked == true);
+
+          endTime = DateTime.Now; // Засекаем время после окончания операции
+          TimeSpan elapsedTime = endTime - startTime;
+
+          txtResult.Text = $"Output:\n{result}\n\n\nElapsed Time: {elapsedTime.TotalSeconds} seconds";
+      }
+      else if (chkFilePath.IsChecked == true)
+      {
+          string filePath = txtInput.Text;
+          string outputFilePath = chkEncrypt.IsChecked == true ? @"E:\C#\Mathematical cryptology\output_encrypt.txt" : @"E:\C#\Mathematical cryptology\output_decrypt.txt";
+
+          string inputText = File.ReadAllText(filePath);
+
+          startTime = DateTime.Now; // Засекаем время до начала операции
+
+          string result = ProcessBlocks(inputText, shift, selectedAlphabet, blockSize, chkEncrypt.IsChecked == true);
+
+          endTime = DateTime.Now; // Засекаем время после окончания операции
+          TimeSpan elapsedTime = endTime - startTime;
+
+          File.WriteAllText(outputFilePath, result);
+          txtResult.Text = $"Output:\n{outputFilePath}\n\n\nElapsed Time: {elapsedTime.TotalSeconds} seconds";
+      }
+  }
+
+
+  private string ProcessBlocks(string inputText, int shift, string selectedAlphabet, int blockSize, bool encrypt)
+  {
+      if (blockSize == 0)
+      {
+          if (encrypt)
+              return EncryptBlock(inputText, shift, selectedAlphabet);
+          else
+              return DecryptBlock(inputText, shift, selectedAlphabet);
+      }
+
+      List<string> blocks = SplitTextIntoBlocks(inputText, blockSize);
+
+      List<string> processedBlocks = new List<string>();
+
+      Parallel.ForEach(blocks, block =>
+      {
+          string processedBlock;
+          if (encrypt)
+              processedBlock = EncryptBlock(block, shift, selectedAlphabet);
+          else
+              processedBlock = DecryptBlock(block, shift, selectedAlphabet);
+
+          lock (processedBlocks)
+          {
+              processedBlocks.Add(processedBlock);
+          }
+      });
+
+      return string.Concat(processedBlocks);
+  }
+
+  private List<string> SplitTextIntoBlocks(string text, int blockSize)
+  {
+      List<string> blocks = new List<string>();
+      for (int i = 0; i < text.Length; i += blockSize)
+      {
+          blocks.Add(text.Substring(i, Math.Min(blockSize, text.Length - i)));
+      }
+      return blocks;
+  }
+    
+
+
+/*  private Dictionary<char, double> EnglishLetterFrequency = new Dictionary<char, double>
+  {
+      {'a', 0.08167}, {'b', 0.01492}, {'c', 0.02782}, {'d', 0.04253}, {'e', 0.12702}, {'f', 0.02228},
+      {'g', 0.02015}, {'h', 0.06094}, {'i', 0.06966}, {'j', 0.00153}, {'k', 0.00772}, {'l', 0.04025},
+      {'m', 0.02406}, {'n', 0.06749}, {'o', 0.07507}, {'p', 0.01929}, {'q', 0.00095}, {'r', 0.05987},
+      {'s', 0.06327}, {'t', 0.09056}, {'u', 0.02758}, {'v', 0.00978}, {'w', 0.02360}, {'x', 0.00150},
+      {'y', 0.01974}, {'z', 0.00074},
+      {' ', 0.1918182}, {',', 0.0340925}, {'.', 0.0340925}, {'!', 0.0340925}, {'?', 0.0340925}, {';', 0.0340925}, {':', 0.0340925},
+      {'\'', 0.0340925}, {'\"', 0.0340925}, {'(', 0.0340925}, {')', 0.0340925}, {'[', 0.0340925}, {']', 0.0340925}, {'{', 0.0340925},
+      {'}', 0.0340925}
+  };
+
+
+  private Dictionary<char, double> UkrainianLetterFrequency = new Dictionary<char, double>
+  {
+      {'а', 0.072}, {'б', 0.017}, {'в', 0.052}, {'г', 0.016}, {'ґ', 0.016}, {'д', 0.035}, {'е', 0.017},
+      {'є', 0.008}, {'ж', 0.009}, {'з', 0.023}, {'и', 0.061}, {'і', 0.057}, {'ї', 0.006}, {'й', 0.008},
+      {'к', 0.035}, {'л', 0.036}, {'м', 0.031}, {'н', 0.065}, {'о', 0.094}, {'п', 0.029}, {'р', 0.047},
+      {'с', 0.041}, {'т', 0.055}, {'у', 0.04}, {'ф', 0.001}, {'х', 0.012}, {'ц', 0.006}, {'ч', 0.018},
+      {'ш', 0.012}, {'щ', 0.001}, {'ь', 0.029}, {'ю', 0.004}, {'я', 0.029},
+      {' ', 0.1}, {',', 0.03}, {'.', 0.03}, {'!', 0.005}, {'?', 0.005}, {';', 0.005}, {':', 0.005},
+      {'\'', 0.005}, {'\"', 0.005}, {'(', 0.005}, {')', 0.005}, {'[', 0.005}, {']', 0.005}, {'{', 0.005},
+      {'}', 0.005}
+  };
+
+  private Dictionary<char, double> FrequencyAnalysis(string text)
+  {
+      Dictionary<char, double> frequencies = new Dictionary<char, double>();
+
+      int totalLetters = 0;
+
+      foreach (char c in text)
+      {
+          if (char.IsLetter(c)) // Рассматриваем только буквы
+          {
+              char lowerC = char.ToLower(c); // Приводим к нижнему регистру для учета частоты
+              if (frequencies.ContainsKey(lowerC))
+                  frequencies[lowerC]++;
+              else
+                  frequencies[lowerC] = 1;
+
+              totalLetters++; // Увеличиваем счетчик букв
+          }
+      }
+
+      // Нормализуем частоты по количеству букв
+      foreach (char c in frequencies.Keys.ToList())
+      {
+          frequencies[c] /= totalLetters;
+      }
+
+      return frequencies;
+  }
+
+  private int DetermineShift(string encryptedText, Dictionary<char, double> languageFrequencies, string alphabet)
+  {
+      Dictionary<char, double> encryptedFrequencies = FrequencyAnalysis(encryptedText);
+      double maxCosineSimilarity = double.MinValue;
+      int bestShift = 0;
+
+      foreach (int shift in Enumerable.Range(0, alphabet.Length))
+      {
+          double cosineSimilarity = 0;
+          double encryptedNorm = 0;
+          double languageNorm = 0;
+
+          foreach (char c in languageFrequencies.Keys)
+          {
+              int index = (alphabet.IndexOf(c) - shift + alphabet.Length) % alphabet.Length;
+              char shiftedC = alphabet[index];
+              encryptedFrequencies.TryGetValue(shiftedC, out double encryptedFreq);
+              double languageFreq = languageFrequencies[c];
+
+              // Рассчитываем косинусное сходство
+              cosineSimilarity += encryptedFreq * languageFreq;
+              encryptedNorm += Math.Pow(encryptedFreq, 2);
+              languageNorm += Math.Pow(languageFreq, 2);
+          }
+
+          // Нормализуем
+          cosineSimilarity /= Math.Sqrt(encryptedNorm) * Math.Sqrt(languageNorm);
+
+          // Если полученное косинусное сходство больше максимального, обновляем значения
+          if (cosineSimilarity > maxCosineSimilarity)
+          {
+              maxCosineSimilarity = cosineSimilarity;
+              bestShift = shift;
+          }
+      }
+
+      return bestShift;
+  }*/
+
+  private void chkCryptographicAnalysis_Checked(object sender, RoutedEventArgs e)
+  {
+    /*  if (chkDecrypt.IsChecked == true)
+      {
+          string encryptedText = txtInput.Text;
+          Dictionary<char, double> englishFrequencies = EnglishLetterFrequency;
+          Dictionary<char, double> ukrainianFrequencies = UkrainianLetterFrequency;
+
+          // Выбираем алфавит в зависимости от выбора пользователя
+          string selectedAlphabet = chkEnglishAlphabet.IsChecked == true ? englishAlphabet : ukrainianAlphabet;
+          Dictionary<char, double> languageFrequencies = chkEnglishAlphabet.IsChecked == true ? englishFrequencies : ukrainianFrequencies;
+
+          int bestShift = DetermineShift(encryptedText, languageFrequencies, selectedAlphabet);
+          txtResult.Text = $"Probable shift: {bestShift}";
+      }
+      else
+      {
+          MessageBox.Show("Cryptographic analysis can only be performed when Decrypt is checked.");
+          chkCryptographicAnalysis.IsChecked = false;
+      }*/
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+________________________________________________________________________________________
+    private List<string> SplitTextIntoBlocks(string text, int blockSize)
+    {
+        List<string> blocks = new List<string>();
+        for (int i = 0; i < text.Length; i += blockSize)
+        {
+            blocks.Add(text.Substring(i, Math.Min(blockSize, text.Length - i)));
+        }
+        return blocks;
+    }
+    private Dictionary<char, double> EnglishLetterFrequency = new Dictionary<char, double>
+      {
+          {'a', 0.08167}, {'b', 0.01492}, {'c', 0.02782}, {'d', 0.04253}, {'e', 0.12702}, {'f', 0.02228},
+          {'g', 0.02015}, {'h', 0.06094}, {'i', 0.06966}, {'j', 0.00153}, {'k', 0.00772}, {'l', 0.04025},
+          {'m', 0.02406}, {'n', 0.06749}, {'o', 0.07507}, {'p', 0.01929}, {'q', 0.00095}, {'r', 0.05987},
+          {'s', 0.06327}, {'t', 0.09056}, {'u', 0.02758}, {'v', 0.00978}, {'w', 0.02360}, {'x', 0.00150},
+          {'y', 0.01974}, {'z', 0.00074},
+          {' ', 0.1918182}, {',', 0.0340925}, {'.', 0.0340925}, {'!', 0.0340925}, {'?', 0.0340925}, {';', 0.0340925}, {':', 0.0340925},
+          {'\'', 0.0340925}, {'\"', 0.0340925}, {'(', 0.0340925}, {')', 0.0340925}, {'[', 0.0340925}, {']', 0.0340925}, {'{', 0.0340925},
+          {'}', 0.0340925}
+      };
+
+
+    private Dictionary<char, double> UkrainianLetterFrequency = new Dictionary<char, double>
+      {
+          {'а', 0.072}, {'б', 0.017}, {'в', 0.052}, {'г', 0.016}, {'ґ', 0.016}, {'д', 0.035}, {'е', 0.017},
+          {'є', 0.008}, {'ж', 0.009}, {'з', 0.023}, {'и', 0.061}, {'і', 0.057}, {'ї', 0.006}, {'й', 0.008},
+          {'к', 0.035}, {'л', 0.036}, {'м', 0.031}, {'н', 0.065}, {'о', 0.094}, {'п', 0.029}, {'р', 0.047},
+          {'с', 0.041}, {'т', 0.055}, {'у', 0.04}, {'ф', 0.001}, {'х', 0.012}, {'ц', 0.006}, {'ч', 0.018},
+          {'ш', 0.012}, {'щ', 0.001}, {'ь', 0.029}, {'ю', 0.004}, {'я', 0.029},
+          {' ', 0.1}, {',', 0.03}, {'.', 0.03}, {'!', 0.005}, {'?', 0.005}, {';', 0.005}, {':', 0.005},
+          {'\'', 0.005}, {'\"', 0.005}, {'(', 0.005}, {')', 0.005}, {'[', 0.005}, {']', 0.005}, {'{', 0.005},
+          {'}', 0.005}
+      };
+
+
+    private Dictionary<char, double> GetExpectedFrequencies(string selectedAlphabet)
+    {
+        if (selectedAlphabet.Equals("English"))
+            return EnglishLetterFrequency;
+        else if (selectedAlphabet.Equals("Ukrainian"))
+            return UkrainianLetterFrequency;
+        else
+            throw new ArgumentException("Invalid alphabet specified.");
+    }
+
+    private int FindShift(Dictionary<char, int> letterFrequencies, Dictionary<char, double> expectedFrequencies)
+    {
+        int bestShift = 0;
+        double minDifference = double.MaxValue;
+
+        foreach (int shift in Enumerable.Range(0, expectedFrequencies.Count))
+        {
+            double difference = 0;
+
+            foreach (var kvp in expectedFrequencies)
+            {
+                char letter = kvp.Key;
+                double expectedFrequency = kvp.Value;
+
+                int actualFrequency = letterFrequencies.ContainsKey(letter) ? letterFrequencies[letter] : 0;
+                double actualFrequencyNormalized = (double)actualFrequency / letterFrequencies.Values.Sum();
+
+                difference += Math.Abs(actualFrequencyNormalized - expectedFrequency);
+            }
+
+            if (difference < minDifference)
+            {
+                minDifference = difference;
+                bestShift = shift;
+            }
+
+            // Перемещаем буквы в начало словаря для следующей итерации
+            letterFrequencies = ShiftDictionaryKeys(letterFrequencies);
+        }
+
+        return bestShift;
+    }
+
+    private Dictionary<char, int> ShiftDictionaryKeys(Dictionary<char, int> dictionary)
+    {
+        var shiftedDictionary = new Dictionary<char, int>();
+        foreach (var kvp in dictionary)
+        {
+            char shiftedKey = kvp.Key == dictionary.Keys.Last() ? dictionary.Keys.First() : (char)(kvp.Key + 1);
+            shiftedDictionary[shiftedKey] = kvp.Value;
+        }
+        return shiftedDictionary;
+    }
+
+    private Dictionary<char, int> CountLetterFrequencies(string text, string selectedAlphabet)
+    {
+        Dictionary<char, int> frequencies = new Dictionary<char, int>();
+        string alphabet = selectedAlphabet.Equals("English") ? englishAlphabet : ukrainianAlphabet;
+
+        foreach (char c in text)
+        {
+            if (alphabet.Contains(c))
+            {
+                if (!frequencies.ContainsKey(c))
+                    frequencies[c] = 0;
+                frequencies[c]++;
+            }
+        }
+
+        return frequencies;
+    }
+
+    private void chkCryptographicAnalysis_Checked(object sender, RoutedEventArgs e)
+    {
+        string inputText = txtInput.Text;
+        string selectedAlphabet = chkEnglishAlphabet.IsChecked == true ? "English" : "Ukrainian";
+
+        Dictionary<char, int> letterFrequencies = CountLetterFrequencies(inputText, selectedAlphabet);
+        Dictionary<char, double> expectedFrequencies = GetExpectedFrequencies(selectedAlphabet);
+
+        // Находим смещение
+        int shift = FindShift(letterFrequencies, expectedFrequencies);
+
+        // Выводим результат в поле txtResult
+        txtResult.Text = $"Shift: {shift % englishAlphabet.Length}"; // Определяем правильное смещение с учетом длины алфавита
+    }
